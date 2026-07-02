@@ -20,9 +20,9 @@ Style and authoring conventions live in `lua/CONTRIBUTING.md` — read it first 
 
 A new `lua/foo.lua` does nothing until referenced. In `src/lib/command-generator/data/configuration-mapping.ts`:
 
-1. Reference it with a `~` prefix, either in `BASE_TWEAKS` (always on) or in a `CONFIGURATION_MAPPING` entry's `tweakdefs`/`tweakunits` array (toggleable — see the `configurator-data` skill for adding a new option).
-2. Add a `LUA_PRIORITIES` entry. **Keys must be bare paths without `~`** (`'lua/foo.lua': N`) — prefixed keys silently fall back to priority 99 (this exact bug is documented as C1 in `docs/proposals.md`). Lower numbers load first; pick a value that places the file after everything it depends on.
-3. Template files use `$VAR$` placeholders and are referenced as `~lua/foo.lua{VAR=value}`.
+1. Reference it by its bare path (`lua/foo.lua`), either in `BASE_TWEAKS` (always on) or in a `CONFIGURATION_MAPPING` entry's `tweakdefs`/`tweakunits` array (toggleable — see the `configurator-data` skill for adding a new option). A legacy `~` prefix is still tolerated by the parsers but must not be used in new references.
+2. Add a `LUA_PRIORITIES` entry with the same bare path (`'lua/foo.lua': N`) — a guard test enforces that keys are clean paths and that every referenced file has an explicit priority. Lower numbers load first; pick a value that places the file after everything it depends on.
+3. Template files use `$VAR$` placeholders and are referenced as `lua/foo.lua{VAR=value}`.
 
 ## Engine gotchas (load-bearing, easy to break)
 

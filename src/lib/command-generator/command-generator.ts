@@ -1,7 +1,7 @@
 /**
  * Main module for generating NuttyB lobby commands.
  *
- * Flow: Configuration -> Lua sources -> Packed slots -> Command sections
+ * Flow: Configuration -> Lua sources -> Packed slots -> Commands
  */
 
 import type { LuaFile, LuaTweakType, TweakType } from '@/types/types';

@@ -12,7 +12,7 @@ Configuration (user settings, localStorage)
   → getMappedData()            src/lib/command-generator/configuration/mapper.ts
       BASE_COMMANDS + BASE_TWEAKS + CONFIGURATION_MAPPING lookups
   → interpolateCommands()      command-template.ts   ($var$ / $?...?$ templates)
-  → resolveLuaSources()        interpolator.ts       (~path{VAR=v} → bundle content)
+  → resolveLuaSources()        interpolator.ts       (path{VAR=v} → bundle content)
   → sortLua()                  by LUA_PRIORITIES     (data/configuration-mapping.ts)
   → packLuaSources()           packer.ts             (minify → base64 → !bset tweakdefsN)
   → generateCommands()         command-generator.ts  (+ custom/preset tweak slot allocation)
@@ -27,7 +27,7 @@ Known pitfalls and ranked defects in this pipeline are catalogued in `docs/propo
 Work top-down; the `ValueMapping` type makes step 2 a compile error until step 1 is done.
 
 1. **`src/lib/command-generator/data/configuration.ts`** — add the field to `Configuration` and `DEFAULT_CONFIGURATION`. For enums, add a `const` array + derived type (see `START_OPTIONS`).
-2. **`src/lib/command-generator/data/configuration-mapping.ts`** — add the `CONFIGURATION_MAPPING` entry mapping each value to `command` / `tweakdefs` / `tweakunits` arrays (Lua refs use the `~lua/...` prefix). Boolean options use string keys `true`/`false`. Any newly referenced Lua file also needs a `LUA_PRIORITIES` entry with a **bare, un-prefixed** path key (see the `lua-tweaks` skill).
+2. **`src/lib/command-generator/data/configuration-mapping.ts`** — add the `CONFIGURATION_MAPPING` entry mapping each value to `command` / `tweakdefs` / `tweakunits` arrays (Lua refs are bare paths like `lua/foo.lua`, optionally with a `{VAR=value}` template suffix). Boolean options use string keys `true`/`false`. Any newly referenced Lua file also needs a `LUA_PRIORITIES` entry with the same bare path key (see the `lua-tweaks` skill).
 3. **Numeric options** get an empty `values: {}` and flow through templates instead: add the variable to `buildTemplateContext()` in `command-template.ts` and use `$varName$` inside a `BASE_COMMANDS` entry (`$?...?$` for optional sections).
 4. **UI** — add the control in `src/components/tabs/configurator/sections/`: `general.tsx` (inputs/selects), `difficulty.tsx`, or `extras.tsx` (feature toggles). Use `useConfiguratorContext().setProperty`.
 5. **`src/components/tabs/configurator/preset-showcase/preset-showcase.utils.tsx`** — add a `CONFIG_METADATA` entry (label + tooltip). Without it the option is invisible in preset tooltips and diff chips.
