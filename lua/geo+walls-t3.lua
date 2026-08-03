@@ -389,7 +389,7 @@ do
 
         cloneUnit('legassistdrone', 'legbasicassistdrone', {
             buildtime = 2000,
-            workertime = '160',
+            workertime = '320',
             buildoptions = {},
             customparams = {
                 armordef = 'vtol',
@@ -400,15 +400,15 @@ do
             metalcost = 7000,
             energycost = 80000,
             buildtime = 110000,
-            energymake = 2200,
+            energymake = 1700,
             energystorage = 30000,
             health = 16000,
-            workertime = 800,
+            workertime = 1600,
             explodeas = 'customfusionexplo',
             selfdestructas = 'korgExplosion',
             customparams = {
                 i18n_en_humanname = 'T3 Geo Legethemos',
-                i18n_en_tooltip = 'Radar/Jammer, Geo Railgun and 800BP Assist & Repair drone platform',
+                i18n_en_tooltip = 'Radar/Jammer, Geo Railgun and 1600BP Assist & Repair drone platform',
                 techlevel = 3,
             },
         })
@@ -447,14 +447,14 @@ do
         crushresistance = 2000,
         customparams = {
             i18n_en_humanname = 'T3 Wall Tyrant',
-            i18n_en_tooltip = 'Regenerating Memoryalloy Fortification 200Hp/s',
+            i18n_en_tooltip = 'Regenerating Memoryalloy Fortification 400HP/s',
             techlevel = 3,
         },
     })
 
     local armFirewall = cloneUnit('armlwall', 'armfirewall', {
-        metalcost = 1400,
-        energycost = 30000,
+        metalcost = 1500,
+        energycost = 43000,
         buildtime = 40000,
         sightdistance = 600,
         health = 20000,
@@ -485,7 +485,7 @@ do
         metalcost = 7400,
         energycost = 50000,
         buildtime = 160000,
-        energymake = 1900,
+        energymake = 1500,
         energystorage = 45000,
         health = 18000,
         sightdistance = 650,
