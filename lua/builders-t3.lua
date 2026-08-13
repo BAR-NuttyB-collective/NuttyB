@@ -119,6 +119,7 @@ do
             faction .. 'aap',
             faction .. 'gatet3',
             faction .. 'flak',
+            faction .. 'ageot3',
             -- Legion vs others conditional options
             isLeg and 'legadveconvt3' or faction .. 'mmkrt3',
             isLeg and 'legamstort3' or faction .. 'uwadvmst3',
@@ -151,6 +152,7 @@ do
                 'armannit3',
                 'armlwall',
                 'armannit4',
+                'armfirewall',
             },
             cor = {
                 'corfmd',
@@ -163,6 +165,7 @@ do
                 'corhllllt',
                 'cormwall',
                 'cordoomt4',
+                'cortyrant',
             },
             leg = {
                 'legabm',
@@ -175,6 +178,7 @@ do
                 'legbastiont4',
                 'legapopupdef',
                 'legdtf',
+                'legparagon',
             },
         }
 
