@@ -214,7 +214,7 @@ do
         carrierdeaththroe = 'release',
         dockingarmor = 0.2,
         dockinghealrate = 256,
-        docktohealthreshold = 33,
+        docktohealthreshold = 0,
         enabledocking = false,
         dockingHelperSpeed = 5,
         dockingpieces = '10 10 10 10 10, 11 12 12',
@@ -317,6 +317,7 @@ do
         local legParadrone = cloneUnit('legdrone', 'legparadrone', {
             health = 2000,
             customparams = {
+                armordef = "vtol",
                 i18n_en_humanname = 'Reinforced Laser Drone',
             },
         })
@@ -436,6 +437,9 @@ do
     end
 
     cloneUnit('corfort', 'cortyrant', {
+        objectname = "scavs/scavfort.s3o",
+        script = "scavs/scavfort.cob",
+        buildpic = "scavengers/scavfort.dds",
         metalcost = 1300,
         energycost = 30000,
         buildtime = 60000,
@@ -492,6 +496,7 @@ do
         explodeas = 'customfusionexplo',
         selfdestructas = 'korgExplosion',
         customparams = {
+            unitgroup = "weapon",
             i18n_en_humanname = 'T3 Geo Barrage',
             i18n_en_tooltip = 'Rocket Artillery Geothermal',
             techlevel = 3,
