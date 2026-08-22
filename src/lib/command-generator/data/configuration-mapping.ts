@@ -13,7 +13,10 @@ export const LUA_PRIORITIES: Record<string, number> = {
     'lua/evocom-cor.lua': 1,
     'lua/evocom-leg.lua': 1,
     'lua/main-defs.lua': 2,
-    'lua/builders-t3.lua': 3,
+    // eco-t3 patches base storage defs that builders-t3 copies, so it must
+    // load first (matches the pre-rewrite tweakdefs7 -> tweakdefs8 slot order)
+    'lua/eco-t3.lua': 3,
+    'lua/builders-t3.lua': 4,
     'lua/defences-t3.lua': 4,
     'lua/defences-t4.lua': 4,
     'lua/mini-bosses.lua': 5,
@@ -22,7 +25,6 @@ export const LUA_PRIORITIES: Record<string, number> = {
     'lua/wave-challenge.lua': 6,
     'lua/cross-faction-t2.lua': 7,
     'lua/lrpc-rebalance.lua': 7,
-    'lua/eco-t3.lua': 8,
     'lua/eco-t4.lua': 9,
     'lua/rflrpc-rebalance.lua': 10,
     'lua/rflrpc-t4.lua': 11,

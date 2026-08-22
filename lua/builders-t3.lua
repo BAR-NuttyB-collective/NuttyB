@@ -47,11 +47,17 @@ do
             },
         })
 
+        -- Storage footprints are declared explicitly: the base defs differ
+        -- (coruwadves/legadvestore are 5x5) and eco-t3.lua's 4x4 base patch
+        -- must not be a load-order dependency of these copies.
+
         -- T3 Metal Storage
         addNewMergedUnitDef(
             isLeg and 'legamstor' or faction .. 'uwadvms',
             isLeg and 'legamstort3' or faction .. 'uwadvmst3',
             {
+                footprintx = 4,
+                footprintz = 4,
                 metalstorage = 30000,
                 metalcost = 4200,
                 energycost = 231150,
@@ -72,6 +78,8 @@ do
             isLeg and 'legadvestore' or faction .. 'uwadves',
             isLeg and 'legadvestoret3' or faction .. 'advestoret3',
             {
+                footprintx = 4,
+                footprintz = 4,
                 energystorage = 272000,
                 metalcost = 2100,
                 energycost = 59000,
