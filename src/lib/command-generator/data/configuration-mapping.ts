@@ -161,7 +161,7 @@ export const CONFIGURATION_MAPPING: ValueMapping = {
                 tweakdefs: ['lua/mini-bosses-extended.lua'],
             },
             'Experimental Wave Challenge': {
-                tweakunits: ['lua/wave-challenge.lua'],
+                tweakdefs: ['lua/wave-challenge.lua'],
             },
         },
     },
