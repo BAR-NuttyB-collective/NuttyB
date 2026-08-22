@@ -16,9 +16,13 @@ do
     local nbHpMult = unitDefs[RAPTOR_MATRIARCH_BASIC].health / 60000
     local nbQhpMult = unitDefs['raptor_queen_epic'].health / 1250000
 
+    -- Engine 2026.08 moved the defs-sandbox helpers from Spring.Utilities to
+    -- BAR.Utilities; support both so older game versions keep working.
+    local gametype = (BAR and BAR.Utilities or spring.Utilities).Gametype
+
     local playerCountScale = 1
-    local isRaptors = spring.Utilities.Gametype.IsRaptors()
-    if isRaptors or spring.Utilities.Gametype.IsScavengers() then
+    local isRaptors = gametype.IsRaptors()
+    if isRaptors or gametype.IsScavengers() then
         playerCountScale = (#spring.GetTeamList() - 2) / 12
     end
 
