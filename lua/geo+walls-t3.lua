@@ -559,6 +559,8 @@ do
         'armacsub',
         'armacv',
         'armoc',
+        'armt3airaide',
+        'armt3aide',
     }
 
     local corBuilders = {
@@ -567,6 +569,8 @@ do
         'coracsub',
         'coracv',
         'coroc',
+        'cort3airaide',
+        'cort3aide',
     }
 
     local legBuilders = {
@@ -575,6 +579,8 @@ do
         'legacv',
         'legoc',
         'leganavyconsub',
+        'legt3airaide',
+        'legt3aide',
     }
 
     for _, builderName in pairs(armBuilders) do
