@@ -172,7 +172,7 @@ export const CONFIGURATION_MAPPING: ValueMapping = {
                 command: [
                     '!map Full Metal Plate',
                     '!addbox 82 82 117 117 2',
-                    '!clearbox 1',
+                    '!!addbox 0 0 200 200 1',
                     '!teamsize 12',
                 ],
             },
@@ -180,7 +180,7 @@ export const CONFIGURATION_MAPPING: ValueMapping = {
                 command: [
                     '!map Raptor Crater',
                     '!addbox 84 81 119 116 2',
-                    '!clearbox 1',
+                    '!!addbox 0 0 200 200 1',
                     '!teamsize 16',
                 ],
             },
@@ -190,7 +190,7 @@ export const CONFIGURATION_MAPPING: ValueMapping = {
                     '!disablemapdamage 0',
                     '!debugcommands invertmap',
                     '!addbox 84 81 119 116 2',
-                    '!clearbox 1',
+                    '!!addbox 0 0 200 200 1',
                     '!teamsize 16',
                 ],
             },
@@ -198,7 +198,7 @@ export const CONFIGURATION_MAPPING: ValueMapping = {
                 command: [
                     '!map Special Hotstepper',
                     '!addbox 83 81 118 116 2',
-                    '!clearbox 1',
+                    '!!addbox 0 0 200 200 1',
                     '!map_lavatiderhythm disabled',
                     '!teamsize 16',
                 ],
@@ -207,7 +207,7 @@ export const CONFIGURATION_MAPPING: ValueMapping = {
                 command: [
                     '!map To Kill The Middle',
                     '!addbox 82 82 117 117 2',
-                    '!clearbox 1',
+                    '!!addbox 0 0 200 200 1',
                     '!teamsize 12',
                 ],
             },
@@ -303,7 +303,7 @@ export const CONFIGURATION_MAPPING: ValueMapping = {
                     '!raptor_graceperiodmult 3',
                     '!addbox 60 60 140 140 1',
                     '!raptor_raptorstart avoid',
-                    '!clearbox 2',
+                    '!!addbox 0 0 200 200 2',
                 ],
             },
         },
