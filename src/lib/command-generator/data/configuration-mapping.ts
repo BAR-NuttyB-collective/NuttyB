@@ -171,16 +171,14 @@ export const CONFIGURATION_MAPPING: ValueMapping = {
             'Full Metal Plate (12P)': {
                 command: [
                     '!map Full Metal Plate',
-                    '!addbox 82 82 117 117 2',
-                    '!addbox 1 1 199 199 1',
+                    '!bset mapmetadata_startbox_override eJyrViouSSwqScqvSC1WsoquVirIz6kEMyqUrAx0lCqVrAxqdcA8IwPsfCMDmAhufixIBNloCyOwnIURVKmhoTlYwNDQvDa2NrYWACKWKrE',
                     '!teamsize 12',
                 ],
             },
             'Raptor Crater (16P)': {
                 command: [
                     '!map Raptor Crater',
-                    '!addbox 84 81 119 116 2',
-                    '!addbox 1 1 199 199 1',
+                    '!bset mapmetadata_startbox_override eJyrViouSSwqScqvSC1WsoquVirIz6kEMyqUrAx0lCqVrAxqdcA8IwPsfCMDmAhufixIBNloCyOwnIURVKmhoTlYwNDQvDa2NrYWACKWKrE',
                     '!teamsize 16',
                 ],
             },
@@ -189,16 +187,14 @@ export const CONFIGURATION_MAPPING: ValueMapping = {
                     '!map Raptor Crater',
                     '!disablemapdamage 0',
                     '!debugcommands invertmap',
-                    '!addbox 84 81 119 116 2',
-                    '!addbox 1 1 199 199 1',
+                    '!bset mapmetadata_startbox_override eJyrViouSSwqScqvSC1WsoquVirIz6kEMyqUrAx0lCqVrAxqdcA8IwPsfCMDmAhufixIBNloCyOwnIURVKmhoTlYwNDQvDa2NrYWACKWKrE',
                     '!teamsize 16',
                 ],
             },
             'Special Hotstepper (16P)': {
                 command: [
                     '!map Special Hotstepper',
-                    '!addbox 83 81 118 116 2',
-                    '!addbox 1 1 199 199 1',
+                    '!bset mapmetadata_startbox_override eJyrViouSSwqScqvSC1WsoquVirIz6kEMyqUrAx0lCqVrAxqdcA8IwPsfCMDmAhufixIBNloCyOwnIURVKmhoTlYwNDQvDa2NrYWACKWKrE',
                     '!map_lavatiderhythm disabled',
                     '!teamsize 16',
                 ],
@@ -206,63 +202,56 @@ export const CONFIGURATION_MAPPING: ValueMapping = {
             'To Kill The Middle (12P)': {
                 command: [
                     '!map To Kill The Middle',
-                    '!addbox 82 82 117 117 2',
-                    '!addbox 1 1 199 199 1',
+                    '!bset mapmetadata_startbox_override eJyrViouSSwqScqvSC1WsoquVirIz6kEMyqUrAx0lCqVrAxqdcA8IwPsfCMDmAhufixIBNloCyOwnIURVKmhoTlYwNDQvDa2NrYWACKWKrE',
                     '!teamsize 12',
                 ],
             },
             'Ancient Bastion Remake (8P)': {
                 command: [
                     '!map Ancient Bastion Remake',
-                    '!addbox 0 0 100 200 1',
-                    '!addbox 175 0 200 200 2',
+                    '!bset mapmetadata_startbox_override eJyrViouSSwqScqvSC1WsoquVirIz6kEMyqUrAx0lCqVrAxqdcA8QwMI38jAoDYWJIas1NDcFEWxEYri2FoAk2Qeng',
                     '!teamsize 8',
                 ],
             },
             'Ancient Vault (12P)': {
                 command: [
                     '!map Ancient Vault',
-                    '!addbox 0 0 200 120 1',
-                    '!addbox 0 180 200 200 2',
+                    '!bset mapmetadata_startbox_override eJyrViouSSwqScqvSC1WsoquVirIz6kEMyqUrAx0lCqVrAxqdcA8IwMI39DIoDYWJIap1NACXbGRAUhxbC0Ak40enA',
                     '!teamsize 12',
                 ],
             },
             'Bismuth Valley (8P)': {
                 command: [
                     '!map Bismuth Valley',
-                    '!addbox 0 0 64 200 1',
-                    '!addbox 175 0 200 200 2',
+                    '!bset mapmetadata_startbox_override eJyrViouSSwqScqvSC1WsoquVirIz6kEMyqUrAx0lCqVrAxqdcA8MxMw18jAoDYWJISs0tDcFEWtkYEBkuLYWgB8QR53',
                     '!teamsize 8',
                 ],
             },
             'Darkside (12P)': {
                 command: [
                     '!map Darkside',
-                    '!addbox 0 0 64 200 1',
-                    '!addbox 175 0 200 200 2',
+                    '!bset mapmetadata_startbox_override eJyrViouSSwqScqvSC1WsoquVirIz6kEMyqUrAx0lCqVrAxqdcA8MxMw18jAoDYWJISs0tDcFEWtkYEBkuLYWgB8QR53',
                     '!teamsize 12',
                 ],
             },
             'Flats and Forests (12P)': {
                 command: [
                     '!map Flats and Forests',
-                    '!addbox 0 0 64 200 1',
-                    '!addbox 175 0 200 200 2',
+                    '!bset mapmetadata_startbox_override eJyrViouSSwqScqvSC1WsoquVirIz6kEMyqUrAx0lCqVrAxqdcA8MxMw18jAoDYWJISs0tDcFEWtkYEBkuLYWgB8QR53',
                     '!teamsize 12',
                 ],
             },
             'Special Creek (12P)': {
                 command: [
                     '!map Special Creek',
-                    '!addbox 158 0 200 200 2',
+                    '!bset mapmetadata_startbox_override eJyrViouSSwqScqvSC1WsoquVirIz6kEMyqUrAx0lCqVrAxqdcA8IwMI38jAoDYWJIas1NDUAo_i2FoAk70eoA',
                     '!teamsize 12',
                 ],
             },
             'Starwatcher (8P)': {
                 command: [
                     '!map Starwatcher',
-                    '!addbox 0 0 64 200 1',
-                    '!addbox 175 0 200 200 2',
+                    '!bset mapmetadata_startbox_override eJyrViouSSwqScqvSC1WsoquVirIz6kEMyqUrAx0lCqVrAxqdcA8MxMw18jAoDYWJISs0tDcFEWtkYEBkuLYWgB8QR53',
                     '!teamsize 8',
                 ],
             },
@@ -301,9 +290,8 @@ export const CONFIGURATION_MAPPING: ValueMapping = {
                     '!raptor_spawncountmult 3',
                     '!raptor_firstwavesboost 6',
                     '!raptor_graceperiodmult 3',
-                    '!addbox 60 60 140 140 1',
+                    '!bset mapmetadata_startbox_override eJyrViouSSwqScqvSC1WsoquVirIz6kEMyqUrMwMdJQqQVStDphvaAIRMDQxqI0FiSErhkjBlBoZQPhGBiClsbUAjyEepA',
                     '!raptor_raptorstart avoid',
-                    '!addbox 1 1 199 199 2',
                 ],
             },
         },
