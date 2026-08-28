@@ -14,8 +14,9 @@ import {
     Tooltip,
 } from '@mantine/core';
 import { useDebouncedCallback } from '@mantine/hooks';
-import { IconInfoCircle, IconX } from '@tabler/icons-react';
+import { IconX } from '@tabler/icons-react';
 
+import { InfoTooltip } from '@/components/common/info-tooltip';
 import { useConfiguratorContext } from '@/components/contexts/configurator-context';
 import {
     DEFAULT_CONFIGURATION,
@@ -25,8 +26,6 @@ import {
     START_OPTIONS,
     StartOption,
 } from '@/lib/command-generator/data/configuration';
-
-import styles from './general.module.css';
 
 function clampNumber(
     value: string | number,
@@ -59,23 +58,7 @@ const LabelWithTooltip: React.FC<LabelWithTooltipProps> = ({
         style={{ display: 'inline-flex' }}
     >
         <span>{label}</span>
-        <Tooltip
-            label={tooltip}
-            multiline
-            w={240}
-            withArrow
-            transitionProps={{ transition: 'pop', duration: 150 }}
-            events={{ hover: true, focus: true, touch: true }}
-            bg='var(--mantine-color-dark-8)'
-            c='var(--mantine-color-dark-0)'
-            bd='1px solid var(--mantine-primary-color-filled)'
-            radius='md'
-            p='xs'
-        >
-            <span className={styles.infoIcon}>
-                <IconInfoCircle size={14} />
-            </span>
-        </Tooltip>
+        <InfoTooltip label={tooltip} />
     </Group>
 );
 

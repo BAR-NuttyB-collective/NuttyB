@@ -20,7 +20,7 @@ import {
     LOCAL_PRESETS_STORAGE_KEY,
 } from '@/lib/configuration-storage/keys';
 import { sanitizeConfiguration } from '@/lib/configuration-storage/storage';
-import { Preset } from '@/lib/presets/registry';
+import { parsePresetStatus, type Preset } from '@/lib/presets/registry';
 import { resolvePresetTweaks } from '@/lib/presets/resolver';
 import { isAllowedRemoteTweakUrl } from '@/lib/presets/tweak-url';
 
@@ -69,7 +69,7 @@ export function PresetsProvider({ children }: { children: React.ReactNode }) {
     );
 
     // Combine hardcoded base presets and dynamically loaded presets from the bundle
-    const builtInPresets = useMemo<Preset[]>(() => {
+    const parsedPresets = useMemo<Preset[]>(() => {
         const dynamicPresets: Preset[] = [];
         for (const file of luaFiles) {
             // Check if file is a config.json inside a preset folder
@@ -90,6 +90,7 @@ export function PresetsProvider({ children }: { children: React.ReactNode }) {
                                 parsed.configuration
                             ),
                             presetTweaks: parsed.presetTweaks || [],
+                            status: parsePresetStatus(parsed.status),
                             isBuiltIn: true,
                         });
                     }
@@ -115,7 +116,14 @@ export function PresetsProvider({ children }: { children: React.ReactNode }) {
         return dynamicPresets;
     }, [luaFiles]);
 
-    /** Finds a preset by ID across both built-in and local presets. */
+    // Disabled presets stay in the bundle but are hidden and unselectable
+    const builtInPresets = useMemo<Preset[]>(
+        () => parsedPresets.filter((p) => p.status !== 'disabled'),
+        [parsedPresets]
+    );
+
+    /** Finds a preset by ID across both built-in and local presets,
+     *  regardless of status (used by export/edit flows). */
     const findPresetById = useCallback(
         (id: string): Preset | null =>
             builtInPresets.find((p) => p.id === id) ||
@@ -124,10 +132,11 @@ export function PresetsProvider({ children }: { children: React.ReactNode }) {
         [builtInPresets, localPresets]
     );
 
-    // Get the active preset details
+    // Get the active preset details (disabled presets never count as active)
     const activePreset = useMemo<Preset | null>(() => {
         if (!activePresetId) return null;
-        return findPresetById(activePresetId);
+        const preset = findPresetById(activePresetId);
+        return preset && preset.status !== 'disabled' ? preset : null;
     }, [activePresetId, findPresetById]);
 
     /** Applies all properties from a Configuration object to the current context. */
@@ -239,7 +248,7 @@ export function PresetsProvider({ children }: { children: React.ReactNode }) {
     const selectPreset = useCallback(
         (id: string) => {
             const preset = findPresetById(id);
-            if (!preset) return;
+            if (!preset || preset.status === 'disabled') return;
 
             applyConfiguration(preset.configuration);
             setActivePresetId(id);
@@ -247,12 +256,24 @@ export function PresetsProvider({ children }: { children: React.ReactNode }) {
         [findPresetById, applyConfiguration, setActivePresetId]
     );
 
+    // If the stored active preset no longer exists (disabled, renamed or
+    // removed built-in), fall back to the default preset.
+    useEffect(() => {
+        if (parsedPresets.length === 0) return; // bundle still loading
+        if (!activePresetId) return;
+        const stored = findPresetById(activePresetId);
+        if (!stored || stored.status === 'disabled') {
+            selectPreset('default');
+        }
+    }, [parsedPresets, activePresetId, findPresetById, selectPreset]);
+
     const savePreset = useCallback(
         (presetData: Omit<Preset, 'id' | 'isBuiltIn'>, id?: string) => {
             const presetFields = {
                 name: presetData.name.trim(),
                 description: presetData.description || '',
                 icon: presetData.icon || 'IconSparkles',
+                status: presetData.status ?? 'enabled',
                 configuration: { ...presetData.configuration },
                 presetTweaks: presetData.presetTweaks || [],
             };
@@ -314,6 +335,7 @@ export function PresetsProvider({ children }: { children: React.ReactNode }) {
                 name: preset.name,
                 description: preset.description,
                 icon: preset.icon,
+                status: preset.status ?? 'enabled',
                 configuration: preset.configuration,
                 presetTweaks: preset.presetTweaks || [],
             };

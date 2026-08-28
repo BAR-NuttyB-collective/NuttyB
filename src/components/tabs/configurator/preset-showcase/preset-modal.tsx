@@ -14,6 +14,7 @@ import {
     ScrollArea,
     Select,
     Stack,
+    Switch,
     Text,
     Textarea,
     TextInput,
@@ -28,9 +29,10 @@ import {
     IconTrash,
 } from '@tabler/icons-react';
 
+import { InfoTooltip } from '@/components/common/info-tooltip';
 import { Configuration } from '@/lib/command-generator/data/configuration';
 import { sanitizeConfiguration } from '@/lib/configuration-storage/storage';
-import type { Preset } from '@/lib/presets/registry';
+import type { Preset, PresetStatus } from '@/lib/presets/registry';
 import { isValidTweakUrl } from '@/lib/presets/tweak-url';
 
 import {
@@ -68,6 +70,7 @@ export const PresetModal: React.FC<PresetModalProps> = ({
     const [presetName, setPresetName] = useState('');
     const [presetDescription, setPresetDescription] = useState('');
     const [selectedIcon, setSelectedIcon] = useState('IconSparkles');
+    const [presetStatus, setPresetStatus] = useState<PresetStatus>('enabled');
     const [presetConfiguration, setPresetConfiguration] =
         useState<Configuration | null>(null);
     const [presetTweaks, setPresetTweaks] = useState<TweakFormRow[]>([]);
@@ -86,6 +89,7 @@ export const PresetModal: React.FC<PresetModalProps> = ({
             setPresetName(editPreset.name);
             setPresetDescription(editPreset.description || '');
             setSelectedIcon(editPreset.icon || 'IconSparkles');
+            setPresetStatus(editPreset.status ?? 'enabled');
             setPresetConfiguration(
                 isEditPresetActive
                     ? { ...configuration }
@@ -105,6 +109,7 @@ export const PresetModal: React.FC<PresetModalProps> = ({
             setPresetName('');
             setPresetDescription('');
             setSelectedIcon('IconSparkles');
+            setPresetStatus('enabled');
             setPresetConfiguration({ ...configuration });
             setPresetTweaks([]);
             setHasRemoteTweaks(false);
@@ -162,6 +167,7 @@ export const PresetModal: React.FC<PresetModalProps> = ({
                 name: presetName.trim(),
                 description: presetDescription.trim() || 'Custom user preset.',
                 icon: selectedIcon,
+                status: presetStatus,
                 configuration: presetConfiguration || { ...configuration },
                 presetTweaks: formattedPresetTweaks,
             },
@@ -194,6 +200,9 @@ export const PresetModal: React.FC<PresetModalProps> = ({
                     setPresetName(parsed.name || '');
                     setPresetDescription(parsed.description || '');
                     setSelectedIcon(parsed.icon || 'IconSparkles');
+                    setPresetStatus(
+                        parsed.status === 'disabled' ? 'disabled' : 'enabled'
+                    );
 
                     if (
                         parsed.configuration &&
@@ -414,6 +423,22 @@ export const PresetModal: React.FC<PresetModalProps> = ({
                         })}
                     </Group>
                 </Stack>
+
+                <Group gap={4} align='center'>
+                    <Switch
+                        label='Enabled'
+                        checked={presetStatus === 'enabled'}
+                        onChange={(e) =>
+                            setPresetStatus(
+                                e.currentTarget.checked ? 'enabled' : 'disabled'
+                            )
+                        }
+                    />
+                    <InfoTooltip
+                        label='Disabled presets stay in the showcase (greyed out) but cannot be selected.'
+                        w={260}
+                    />
+                </Group>
 
                 {configDiff.length > 0 && (
                     <Stack gap='xs'>

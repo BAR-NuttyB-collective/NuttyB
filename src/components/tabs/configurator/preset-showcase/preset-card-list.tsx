@@ -4,6 +4,7 @@ import React, { useMemo, useState } from 'react';
 
 import {
     ActionIcon,
+    Badge,
     Button,
     Card,
     Divider,
@@ -17,6 +18,7 @@ import {
 } from '@mantine/core';
 import { IconFileExport, IconPencil, IconTrash } from '@tabler/icons-react';
 
+import { InfoTooltip } from '@/components/common/info-tooltip';
 import type { Preset } from '@/lib/presets/registry';
 
 import styles from './preset-showcase.module.css';
@@ -126,6 +128,7 @@ export const PresetCardList: React.FC<PresetCardListProps> = ({
             <Flex gap='md' wrap='nowrap' py='xs'>
                 {allPresets.map((preset) => {
                     const isActive = activePresetId === preset.id;
+                    const isDisabled = preset.status === 'disabled';
                     const showModified = isActive && isModified;
 
                     return (
@@ -136,9 +139,27 @@ export const PresetCardList: React.FC<PresetCardListProps> = ({
                             p='xs'
                             w={160}
                             h={125}
-                            onClick={() => onSelect(preset.id)}
-                            className={`${styles.presetCard} ${isActive ? styles.presetCardActive : ''}`}
+                            onClick={() => {
+                                if (!isDisabled) onSelect(preset.id);
+                            }}
+                            className={`${styles.presetCard} ${isActive ? styles.presetCardActive : ''} ${isDisabled ? styles.presetCardDisabled : ''}`}
                         >
+                            {isDisabled && (
+                                <Tooltip label='This preset is disabled. Edit it to re-enable.'>
+                                    <Badge
+                                        size='xs'
+                                        variant='light'
+                                        color='gray'
+                                        style={{
+                                            position: 'absolute',
+                                            top: 4,
+                                            left: 4,
+                                        }}
+                                    >
+                                        Disabled
+                                    </Badge>
+                                </Tooltip>
+                            )}
                             {/* Top action bar row */}
                             <Group
                                 gap={2}
@@ -245,22 +266,12 @@ export const PresetCardList: React.FC<PresetCardListProps> = ({
                                 </Tooltip>
                             </Group>
 
-                            <Tooltip
+                            <InfoTooltip
                                 label={<PresetTooltipContent preset={preset} />}
-                                multiline
                                 w={280}
-                                withArrow
-                                transitionProps={{
-                                    transition: 'pop',
-                                    duration: 150,
-                                }}
-                                bg='var(--mantine-color-dark-8)'
-                                c='var(--mantine-color-dark-0)'
-                                bd='1px solid var(--mantine-primary-color-filled)'
-                                radius='md'
-                                p='xs'
                                 position='bottom'
                                 openDelay={300}
+                                showIcon={false}
                             >
                                 <Flex
                                     direction='column'
@@ -303,7 +314,7 @@ export const PresetCardList: React.FC<PresetCardListProps> = ({
                                         </Text>
                                     )}
                                 </Flex>
-                            </Tooltip>
+                            </InfoTooltip>
                         </Card>
                     );
                 })}

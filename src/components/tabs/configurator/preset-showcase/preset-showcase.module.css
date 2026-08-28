@@ -19,3 +19,13 @@
     border: 2px solid var(--mantine-color-yellow-5);
     background-color: var(--mantine-color-dark-6);
 }
+
+.presetCardDisabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.presetCardDisabled:hover {
+    transform: none;
+    box-shadow: none;
+}
