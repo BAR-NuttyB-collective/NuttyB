@@ -3,6 +3,7 @@
   "name": "Casual Start",
   "description": "Easy start options for a relaxed gameplay experience.",
   "icon": "IconMoodSmile",
+  "status": "enabled",
   "configuration": {
     "presetDifficulty": "Easy",
     "challenges": "None",

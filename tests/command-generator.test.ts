@@ -590,7 +590,7 @@ describe('Preset replacement tweaks', () => {
 
     test('filters out actual replaced files from dynamic preset configs', () => {
         const configs = luaFiles.filter((f) =>
-            /^lua\/presets\/[^/]+\/config\.json$/.test(f.path)
+            /^public\/presets\/[^/]+\/config\.json$/.test(f.path)
         );
 
         // Get the active paths under DEFAULT_CONFIGURATION

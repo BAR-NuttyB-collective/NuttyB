@@ -62,6 +62,7 @@ Adding a *new* tweak to your preset (modifying the `presetTweaks` array in `conf
     "name": "My Preset",
     "description": "What this preset does",
     "icon": "IconBolt",
+    "status": "enabled",
     "configuration": {
         "presetDifficulty": "Easy",
         "challenges": "Mini Bosses",
@@ -97,6 +98,7 @@ Adding a *new* tweak to your preset (modifying the `presetTweaks` array in `conf
 | `name` | Yes | Display name |
 | `description` | Yes | Short description |
 | `icon` | Yes | Tabler icon (e.g. `IconBolt`, `IconMoodSmile`, `IconUser`) |
+| `status` | No | `"enabled"` (default) or `"disabled"`. Disabled built-in presets stay in the bundle but are hidden from the showcase; disabled local presets stay visible (greyed out) so you can edit them back to enabled. |
 | `configuration` | Yes | Settings to apply. Sparse merge — omit keys to keep defaults. |
 | `presetTweaks` | No | Array of custom Lua tweaks (see below) |
 

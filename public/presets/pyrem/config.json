@@ -3,6 +3,7 @@
     "name": "Pyrem",
     "description": "Community configuration by Relicus",
     "icon": "IconBolt",
+    "status": "disabled",
     "configuration": {
         "presetDifficulty": "Medium",
         "challenges": "Mini Bosses",
